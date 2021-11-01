@@ -755,5 +755,35 @@ we can specify the n (~n) ancestors that we want to remove:
 		|	git reset --hard HEAD~3						|
 		-------------------------------------------------
 Which would remove the last 3 commits.		
+
+10.4 Deleting tags:	
+		-------------------------------------------------
+		|	git tag -d <tag-name>						|
+		-------------------------------------------------
 ---------------------------------------------------------
-11 - Branching strategies:			
+11 - Stash:
+To Stash some changes that we'll not be included in a commit, or we want to switch to a branch without committing currente changes
+		---------------------------------------------------------
+		|	git stash push . -m "Informatif message for stash"	|
+		---------------------------------------------------------
+Get All created stash
+		-------------------------------------------------
+		|	git stash list					            |
+		-------------------------------------------------
+		-------------------------------------------------------------
+		|	stash@{0}: On CHAM-332: Informatif message for stash	|
+		-------------------------------------------------------------
+Show the changes of a stash
+		-------------------------------------------------
+		|	git stash show stash@{0}					|
+		-------------------------------------------------
+Reset all changes stashed 
+		-------------------------------------------------
+		|	git stash pop stash@{0}					    |
+		-------------------------------------------------
+---------------------------------------------------------
+12 - Branching strategies:	
+To synchronise all branch between local repo and remote repo we use the following command:	
+		-------------------------------------------------
+		|	git fetch --all								|
+		-------------------------------------------------
