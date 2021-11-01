@@ -1,0 +1,759 @@
+What is Version control systems (VCS)?
+VCS is the management of the change made within a systems.
+---------------------------------------------------------
+VCS designed to provide the follwing features:
+	-Reversibility
+	-Concurrency
+	-Annotation
+
+*Reversibility : is the capability of allowing to return to any point of the history of the code source.
+
+*Concurrency : possibility to support a several people to making changes on the same project, facilitating of the integration of pieces of code for all the participants.
+
+*Annotation :  allowing the possibility to add additional explanations and comments, such us, a resume of the changes made, the resean that has caused these changes, an overall  description of the stability ...etc
+
+Git is a DVCS (Distributed/Decentralized version control systems), that allow [EVERY DEVELOPER HAS A FULL COPY OF THE REPOSITORY], which is hosted in the cloud. 
+
+															  <<Server>>
+															+------------+
+										   |----[push]-----►| 			 |◄---[push]-------|
+										   |				| Repository |                 |
+										   |                |   [repo]   |                 |
+										   |  |---[pull]----|  			 |--[pull]----|    |          
+										   |  |			    +------------+         	  |    |
+										   |  |			       ▲       |           	  |    |
+										   |  |				   |       |           	  |    |
+										   |  |				   |       |              |    |
+										   |  |             [push]     |              |    |
+										   |  |		           |    [pull]            |    |
+										   |  |                |       |              |    |
+										   |  ▼                |       ▼              ▼    |
+										+--------------+ 	+--------------+	+--------------+
+										|  Repository  |    |  Repository  |    |  Repository  |   			 
+										+--------------+    +--------------+    +--------------+
+  										   ▲     |           	▲       |          ▲      |
+										   |     |				|       |          |      |
+										   |     |				|       |          |      |
+									   [commit]  |           [commit]   |       [commit]  |  
+										   |  [update]		    |   [update]       |   [update]
+										   |     |              |       |          |      |
+										   |     ▼              |       ▼          |      ▼
+										+--------------+ 	+--------------+	+--------------+
+										| Working copy |    | Working copy |    | Working copy |   			 
+										+--------------+    +--------------+    +--------------+
+
+* Every developer has the full repository locally. So, the developers can save the changes whenever they want.
+
+* If at certain moment the server hosting the repository is down, the developers can continue working without any problem. And the changes could be recorded into the shared  repository later.
+
+									----------------------------------------------------------------
+
+Contrary to CVCS[Centralized version control systems], that are based oh the idea that there is a single full copy of the repositoryn hosted in some server, where developers save the changes they made.
+
+															+------------+
+										   |----[commit]---►|			 |◄---[commit]-----|
+										   |				| Repository |                 |
+										   |  |---[update]--|  			 |--[update]--|    |          
+										   |  |			    +------------+         	  |    |
+										   |  |			       ▲       |           	  |    |
+										   |  |				   |       |           	  |    |
+										   |  |				   |       |              |    |
+										   |  |             [commit]   |              |    |
+										   |  |		           |    [update]          |    |
+										   |  |                |       |              |    |
+										   |  ▼                |       ▼              ▼    |
+										+--------------+ 	+--------------+	+--------------+
+										| Working copy |    | Working copy |    | Working copy |   			 
+										+--------------+    +--------------+    +--------------+
+
+* CVCS you are enforced to have a complete dependency on a remote server,can also be slow. Recording a change in the repository means making effective the change in the remote repository, so,it relies on the connection speed to the server.
+
+* If the server, or the connection to it goes down, the developers won’t be able to save the changes. Or even worse, if the central repository gets corrupted, and no backup exists, the history of the repository will be lost.
+
+---------------------------------------------------------
+1 - Download and install Git:
+		---------------------------------------------------
+		|	sudo apt-get update						   	  |
+		|	sudo apt-get install git    				  |
+		---------------------------------------------------
+
+We can change the language to english if it not: 
+		---------------------------------------------------
+		|	alias git='LANG=en_GB git'       		   	  |
+		---------------------------------------------------		
+---------------------------------------------------------
+2 - Creating a repository:
+
+Repository or repo is a directory intended for repository Git.
+To create a reposiroty Git we need to do the following:
+		---------------------------------------------------
+		|	Create a directory [~/Formations/Git/repo]    |
+        |   Excute the following command in the directory:|
+		|	          "git init"                          |
+		---------------------------------------------------
+
+The Git reposiroty have a folder named [.git], is the repository metadata, an embedded database.
+---------------------------------------------------------
+3 - Commits:
+
+What's a commit? 
+A commit is a full snapshot of the repository, that is saved in the database(.git).
+
+What's a the staging (index or cache)?
+The staging is the process that we do when we choose only files that will be committed,not all the repository has to be committed necessarily.
+The files are added to the index, the Git index is where the data that is going to be saved in the commit is stored temporarily,until the commit is done.
+
+Example:
+Go to the directory [~/Formations/Git/repo], create a new file with some content like the following:
+		---------------------------------------------------
+		|	echo 'My first commit!' > README.txt          |
+		---------------------------------------------------
+Any change in the repo can be tracked by the following option:
+		---------------------------------------------------
+		|	git status                                    |
+		---------------------------------------------------
+We get the following output:
+		-----------------------------------------------------------------------------------
+		| 	On branch master															  | 	
+		| 	Initial Commit                                                                |
+		| 	Untracked files:                                                              |
+		| 	(use "git add <file>..." to include in what will be committed)                |
+		| 	README.txt                                                                    |
+		| 	nothing added to commit but untracked files present (use "git add" to track)  |
+		-----------------------------------------------------------------------------------
+What Git is saying is "you have a new file in the repository directory, but this file is not yet selected to be committed".
+If we want to commit this file, it have to be added to the index (staging) by the following command:
+		---------------------------------------------------
+		|	git add README.txt                            |
+		---------------------------------------------------
+We can add all the files of the current directory, recursively, to the index, with [.]:
+		---------------------------------------------------
+		|	git add .                                     |
+		---------------------------------------------------
+If we want to unstaging this file, it have to from the index (unstaging) by the following command:
+		---------------------------------------------------
+		|	git rm --cached README.txt                    |
+		---------------------------------------------------
+Again the status of the repository [git status] has changed when we staging the file, and we get the following output when:		
+		-----------------------------------------------------------------------------------
+		| 	On branch master                                                              | 
+		|	Initial commit                                                                |
+		|	Changes to be committed:                                                      |
+		|	(use "git rm --cached <file>..." to unstage)                                  |
+		|			new file: README.txt                                                  |
+		-----------------------------------------------------------------------------------
+Now, we can do the commit!
+		---------------------------------------------------
+		|	git commit                                    |
+		---------------------------------------------------
+Now, the default text editor will be shown, where we have to type the commit message, and then save. 
+If we leave the message empty, the commit will be aborted.
+
+To have a good commit message we can format our message in know rule 50/72 rule,which is so simple:
+	• One first line with a summary of no more than 50 characters.
+	• Wrap the subsequent explanations in lines of no more than 72 characters.
+To make the commit messages useful, you should always include the reason that motivated the changes.
+Example:
+		-------------------------------------------------------------------------------------
+		|	commit e54d3c604a9a852822c0a8866aaa80106064952b									|
+		|	Author: Noel Worden																|
+		|	Date:   Fri May 22 14:40:23 2020 -0600											|
+        |																					|
+		|   FAM-229: Refactor validation logic 												|
+        |																					|
+		|   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod			|
+		|   tempor incididunt ut labore et dolore magna aliqua. Fames ac turpis egestas		|
+		|   maecenas pharetra convallis posuere morbi.										|
+	    -------------------------------------------------------------------------------------
+
+
+Additionally, we can use the shorthand version with [-m] flag, specifying the commit message inline:
+		------------------------------------------------------
+		|	git commit -m 'Commit message for first commit!' |
+		------------------------------------------------------
+For the commited files, if we add a new modification and it's in the staging, we can (unstaging) by the following command:
+		---------------------------------------------------
+		|	git restore --staged  README.txt              |
+		---------------------------------------------------
+We can combine the staging process and commit with [-am] or [-a -m] (if we want to stage all files) in one command like the following:
+		---------------------------------------------------
+		|	git commit -am 'New Commit!!'       		  |
+		|	#git commit -a -m 'New Commit!!'	          |
+		|   #This command is the like we do:              |
+		|   [ git add . ]                                 |
+		|   [ git commit -m 'New Commit!!' ]              |
+		---------------------------------------------------
+
+To clear and init a new repo we use the following command:
+		---------------------------------------------------------                      
+		|   WARNING! THIS WILL DESTROY YOUR REPOSITORY!         |
+		|	rm -rf .git                                         |
+		|   # this is saying remove recursively the git file.   |
+		|   git init                                            |
+		|   # this is making the folder a git repo again.       | 
+		---------------------------------------------------------
+
+Study Case 1:
+		------------------------------------------------------------
+		|	1.	echo 'Second commit!' > README.txt                 |
+		|   2.	git add README.txt                                 |
+		|   3.	echo 'Or is it the third?' > README.txt            |
+		|   4.	git commit -m 'Another commit'                     |
+		------------------------------------------------------------
+For this case we need to stage the step 3 to commit the new change like the following:
+		------------------------------------------------------------
+		|	1.	echo 'Second commit!' > README.txt                 |
+		|   2.	git add README.txt                                 |
+		|   3.	echo 'Or is it the third?' > README.txt            |
+		|	4.	git add README.txt                                 |
+		|   5.	git commit -m 'Another commit'                     |
+		------------------------------------------------------------
+Every Commit in Git has an unique identifiant using SHA1 hash function like the following:
+		---------------------------------------------------
+		|	de5aeb426b3773ee3f1f25a85f471750d127edfe      |
+		---------------------------------------------------
+---------------------------------------------------------
+4 - History:
+For our first two commit, the history would be the following:
+							+--------+
+						   	|  HEAD  |   			 
+							+--------+
+	 							|             
+								▼                      
+    	+-----------+       +---------+
+		|  	 C0		|◄------| 	C1	  | 
+		+-----------+       +---------+
+
+Each commit points to the commit it has been created from, being this called the "ancestor".
+The HEAD is the important element in Git that points to the current point in the repository history. 
+The contents of the working directory will be those that belong to the snapshot the HEAD is pointing to.
+
+To show the history of the repository :
+		---------------------------------------------------
+		|	git log                                       |
+		---------------------------------------------------
+With the following output:
+		-----------------------------------------------------------------------------------
+		|	commit 38580e45e9a9e47f9363ec3c3307070a1a02eb8f (HEAD -> master)			  |	
+		|	Author: Mohammed Amine <maennami@gmail.com>									  |	
+		|	Date:   Mon May 10 16:59:25 2021 +0200										  |	
+		|										  										  |	
+    	|		Another commit										  					  |	
+		|										  										  |	
+		|	commit 45abc05c6a1aac28a557e43bcbab788e5e71657c								  |	
+		|	Author: Mohammed Amine <maennami@gmail.com>									  |	
+		|	Date:   Mon May 10 16:28:04 2021 +0200										  |	
+		|																				  |
+    	|		Commit message for first commit!										  |			
+		-----------------------------------------------------------------------------------		
+We can also show pretty graphs of the history by the following command:
+		---------------------------------------------------
+		|	git log --all --graph --decorate --oneline    |
+		---------------------------------------------------
+With the following output:
+		---------------------------------------------------
+		|	* 38580e4 (HEAD -> master) Another commit     |
+		|	* 45abc05 Commit message for first commit!    |
+  		---------------------------------------------------
+We can also show pretty graphs of the history with the status of files(Added or Modiffied or Deleted) by the following command:
+		---------------------------------------------------
+		|	git log --graph--oneline --name-status	      |
+		---------------------------------------------------
+With the following output:
+		---------------------------------------------------
+		|	* 1eed4ad (HEAD -> master) Another commit 	  |
+		|	| M     README.txt            			 	  |
+		|	* bb48e7f Commit message for first commit! 	  |
+  		|	A     README.txt 	  						  |
+  		---------------------------------------------------
+When you install Git, you also get gitk and git-gui visual tools,that are a graphical history viewer.
+
+To get gitk:
+		---------------------------------------------------
+		|	gitk                                          |
+		---------------------------------------------------
+
+To get git-gui:
+		---------------------------------------------------
+		|	git gui                                       |
+		---------------------------------------------------	
+
+Or we can install GitKraken for more funny graphical history viewer
+
+Install GitKraken:
+		---------------------------------------------------
+		|	sudo snap install gitkraken --classic         |
+		---------------------------------------------------
+To get GitKraken:
+		---------------------------------------------------
+		|	gitkraken                                     |
+		---------------------------------------------------			
+---------------------------------------------------------
+5 - Branches:
+What's a branch ?
+A branch is an independent development path, coexist in the same repository, but each one has its own history.
+The default branch in Git's [master] branch.
+In the previous Study Case 1 [line 196] we worked in master branch.
+
+							+--------+
+						   	|  HEAD  |   			 
+							+--------+
+	 							|             
+								▼                      
+						 +--------------+
+						 |    master    |   			 
+						 +--------------+
+	 							|             
+								▼    
+    	+-----------+       +---------+
+		|  	 C0		|◄------| 	C1	  | 
+		+-----------+       +---------+
+
+To Create a branch we use the following command:
+		---------------------------------------------------
+		|	git branch <branch-name>                      |
+		|	Example:                      				  |
+		|	git branch second-branch                      |
+		---------------------------------------------------	
+To check wich branch we are and also list all branch we use the following command:
+		---------------------------------------------------
+		|	git branch   				                  |
+		|	#The out put will be:       				  |
+		|		* master								  |
+		|		second-branch							  |
+		|	#We pointing in master branch				  |
+		---------------------------------------------------	
+what will really happen  ?
+Git creates a pointer with that branch name, pointing to the commit where the branch has been created but the HEAD still pointing in [master]. 
+							+--------+
+						   	|  HEAD  |   			 
+							+--------+
+	 							|             
+								▼                      
+						 +--------------+
+						 |    master    |   			 
+						 +--------------+
+	 							|             
+								▼    
+    	+-----------+       +---------+
+		|  	 C0		|◄------| 	C1	  | 
+		+-----------+       +---------+
+								▲
+								|
+						 +---------------+
+						 | second-branch |   			 
+						 +---------------+
+
+To start working in that branch we have to chekout it, by this command:
+		---------------------------------------------------
+		|	git checkout second-branch                    |
+		---------------------------------------------------	
+
+Now, the commits will only exist in second-branch. Why? Because the HEAD now is pointing in second-branch, 
+The contents of the working directory will be those that belong to the branch that the HEAD is pointing in.
+so,the modifications created from now will have an independent path from master.
+
+						 +--------------+
+						 |    master    |   			 
+						 +--------------+
+	 							|             
+								▼    
+    	+-----------+       +---------+
+		|  	 C0		|◄------| 	C1	  | 
+		+-----------+       +---------+
+								▲
+								|
+						 +---------------+
+						 | second-branch |   			 
+						 +---------------+
+								▲
+								|
+							+--------+
+						   	|  HEAD  |   			 
+							+--------+
+
+To Modify the name of the branch:
+		---------------------------------------------------
+		|	git checkout <old_name>                       |
+		|	git branch -m <new_name>					  |
+		---------------------------------------------------	
+
+We can combine the creation of branch and the checkout with [-b] in one command like the following:
+		---------------------------------------------------
+		|	git checkout -b <branch-name>                 |
+		|   #This command is the like we do:              |
+		|   [ git branch <branch-name> ]                  |
+		|   [ git checkout <branch-name> ]                |
+		---------------------------------------------------
+
+Study Case 2:
+We can making a couple of modifications and commits being located in second-branch:
+		----------------------------------------------------------------------
+		|	1.	echo 'The changes made in this branch...' >> README.txt      |
+		|   2.	git add README.txt   										 |
+		|	3.  git commit -m 'Start changes in second-branch'               |
+		|   4.	echo '... Only exist in this branch' >> README.txt           |
+		|	5.	git add README.txt                                 			 |
+		|   6.	git commit -m 'End changes in second-branch'                 |
+		----------------------------------------------------------------------
+If we check our file we will find this:
+		-----------------------------------------------
+		|	Second commit!        					  |
+		|	The changes made in this branch...        |
+		|	... Only exist in this branch             |
+        -----------------------------------------------		
+But, what if we return to master ?
+		-----------------------------------------------
+		|	git checkout master	                      |
+		-----------------------------------------------	
+We will find this in our file:
+		-----------------------------------------------
+		|	Second commit!        					  |
+        -----------------------------------------------	
+
+This is because, after creating the history of second-branch, we have placed the HEAD pointing in master.
+
+							+--------+
+						   	|  HEAD  |   			 
+							+--------+
+	 							|             
+								▼                      
+						 +--------------+
+						 |    master    |   			 
+						 +--------------+
+	 							|             
+								▼    
+    	+-----------+       +---------+
+		|  	 C0		|◄------| 	C1	  | 
+		+-----------+       +---------+
+								▲
+								|
+						  +-----------+       +---------+
+						  |  	C2    |◄------|   C3    | 
+						  +-----------+       +---------+
+												  ▲
+										  		  |
+							  			  +---------------+
+										  | second-branch |   			 
+										  +---------------+
+---------------------------------------------------------
+6 - Merging:
+What is Merging in Git?
+The merge will combine multiple sequences of commits into one unified history between 2 branches.
+There are 2 types of modes:
+	* Fast-forward mode aka Automatic Merge
+	* No fast-forward mode aka 3-way merge 
+
+6.1 - Fast-forward mode (Automatic Merge):
+Let’s suppose that, after the changes made in second-branch, is ready to return to master. 
+For that, we have to place the HEAD in the destination branch (master), and specify the branch that is going to be merged to this destination branch (second-branch)
+We do that by the merge command like the following:
+		-----------------------------------------------------
+		|	git checkout master	                            |
+		|	git merge second-branch  					    |
+		-----------------------------------------------------	
+We get the following output:
+		-----------------------------------------------------
+		|	Updating C1..C3								    |
+		|	Fast-forward									|
+ 		|	README.txt | 4 +++-								|
+ 		|	1 file changed, 3 insertions(+), 1 deletion(-)	|
+        -----------------------------------------------------
+
+In our case we have the fast-forward mode that used when the branch and the master share the common ancestor commit, in our case is commit (C3).
+
+Now, the history of the second-branch has been merged to master, so, all the changes made in this first branch have been applied to the second.
+In this case, the entire history of second-branch is now part of the history of master, having a graph like the following:
+
+																		+--------+
+																		|  HEAD  |   			 
+																		+--------+
+													 						|             
+																			▼                      
+																	+--------------+
+																	|    master    |   			 
+																	+--------------+
+													 						|          
+																			▼    
+		+-----------+		+-----------+		  +-----------+       +------------+
+		|  	  C0	|◄------|  	  C1    |◄--------|  	C2    |◄------|  	C3     | 
+		+-----------+		+-----------+		  +-----------+       +------------+
+																			▲
+																	  		|
+														  			+---------------+
+																	| second-branch |   			 
+																	+---------------+
+
+		-------------------------------------------------------------------------------
+		|	* C3	(HEAD -> master, second-branch)  End changes in second-branch     |
+		|	* C2	Start change in second-branch						 			  |
+		|	* C1	Another Commits						  			 				  |
+		|	* C0	Commit message for first commit!					 			  |
+  		-------------------------------------------------------------------------------	
+6.2 - No fast-forward mode (3-way merge):
+This mode is used when the branch and the master not share the same common ancestor commit like the following three:
+
+															+--------+
+														   	|  HEAD  |   			 
+															+--------+
+									 							|             
+																▼                      
+														 +--------------+
+														 |    master    |   			 
+														 +--------------+
+									 							|             
+																▼    
++-----------+    	+-----------+       +---------+		  +---------+
+|	  C0	|◄------|  	 C1     |◄------| 	C2    |◄------|   C4    |
++-----------+		+-----------+       +---------+		  +---------+
+											▲
+											|
+									  +-----------+       +---------+
+									  |  	C3    |◄------|   C5    | 
+									  +-----------+       +---------+
+															  ▲
+													  		  |
+										  			  +---------------+
+													  | second-branch |   			 
+													  +---------------+
+
+To merge, in this case second-branch and master have to use the no fast-forward aka 3-way mode by the following commands:
+		-----------------------------------------------------
+		|	git checkout master	                            |
+		|	git merge --no-ff second-branch  			    |
+		-----------------------------------------------------	
+
+The no fast-forward mode (3-way mode) should be always used.
+
+To abort the merge in branch, we use the following command:
+		-----------------------------------------------------
+		|	git checkout <branch-name>                      |
+		|	git merge --abort 				 			    |
+		-----------------------------------------------------	
+
+A merge of a branch supposes the end of the life of this. So, it should be deleted by the [-d] option like the following:
+		-----------------------------------------------
+		|	git branch -d <branch-name>               |
+		-----------------------------------------------	
+---------------------------------------------------------
+7 - Conflictive merges:
+When the master and the current branch don't have a common ancestor, the opration of merge do conflicts.
+
+Study Case 3:
+Let's imagine the following three:
+											+--------+
+											|  HEAD  |   			 
+											+--------+
+									 			|             
+												▼                      
+											+--------------+
+											|    master    |   			 
+											+--------------+
+									 			|             
+												▼    
+ 	+-----------+       +---------+		  +---------+
+	|  	 C0     |◄------| 	C1    |◄------|   C2    |
+	+-----------+       +---------+		  +---------+
+							▲
+							|
+						+-----------+
+						|  	C3    	| 
+						+-----------+       
+							▲
+							|
+						+---------------+
+						| second-branch |   			 
+						+---------------+
+
+		-----------------------------------------------------------------
+		|	01.	git checkout master      								|
+		|	02.	echo 'one' >> file.txt      							|
+		|   03.	git add file.txt   										|
+		|	04. git commit -m 'first'#[[[[C0]]]]						|
+		|   05.	echo 'two' >> file.txt           						|
+		|	06.	git add file.txt                                		|
+		|   07.	git commit -m 'second'#[[[[C1]]]]						|
+		|																|
+		|	08.	git checkout -b second-branch 							|     
+		|	09.	echo 'three (from second-branch)' >> file.txt			|
+		|	10.	git add file.txt										|
+		|	11.	git commit -m 'third from second branch'#[[[[C3]]]]		|
+		|																|
+		|	12.	git checkout master										|
+		|	13.	echo 'three' >> file.txt 								|
+		|	14.	git add file.txt 										|
+		|	15.	git commit -m 'third'#[[[[C2]]]]						|
+		-----------------------------------------------------------------
+What will happen if we try to merge second-branch to master?
+		-----------------------------------------------------
+		|	git checkout master  		                    |
+		|	git merge second-branch						    |
+		-----------------------------------------------------		
+Git won’t be able to do it because the master and second-branch don't share a common ancestor:
+		-------------------------------------------------------------------------
+		|	Auto-merging file.txt 												|
+		|	CONFLICT (content): Merge conflict in file.txt 						|
+		|	Automatic merge failed; fix conflicts and then commit the result.	|
+		-------------------------------------------------------------------------
+If we check the status we have the following:
+		-----------------------------------------------
+		|	git status					              |
+		-----------------------------------------------	
+		-------------------------------------------------------------------------
+		|	On branch master													|
+		|	You have unmerged paths.											|
+		|	(fix conflicts and run "git commit")								|
+		|	(use "git merge --abort" to abort the merge)						|
+		|																		|
+		|	Unmerged paths:														|
+		|	(use "git add <file>..." to mark resolution)						|
+		|		both modified:   file.txt 										|
+		|																		|
+		|	no changes added to commit (use "git add" and/or "git commit -a")	|
+		-------------------------------------------------------------------------
+Showing the conflictive files. If we open it, we will see that Git has added some strange lines:
+		---------------------------------
+		|	One 						|
+		|	two							|
+		|	<<<<<<< HEAD				|
+		|	three 						|
+		|	=======						|					
+		|	three (from second-branch)	|	
+		|	>>>>>>> second-branch		|
+		---------------------------------
+On the one hand, 
+The changes introduced to the current HEAD [master] are shown(between <<<<<<< HEAD and =======), 
+and, on the other, 
+The branch [second-branch] we are trying to merge (between ======= and >>>>>>> second-branch).		
+
+To solve the conflict, there are three options:
+
+		• Accept Current Change (Use HEAD version in our case is the master branch version) like the following,
+					---------------------------------
+					|	One 						|
+					|	two							|
+					|	three 						|
+					---------------------------------
+
+		• Accept Incoming Change (Use second-branch version) like the following,
+					---------------------------------
+					|	One 						|
+					|	two							|
+					|	three (from second-branch)	|
+					---------------------------------
+		• Accept Both Changes (A combination of two versions).
+					---------------------------------
+					|	One 						|
+					|	two							|
+					|	three 						|				
+					|	three (from second-branch)	|	
+					---------------------------------
+In this case we use the editor to accept wich option we need to use for the merge.
+
+After that we have to validate our changes by add and commit commands:
+		---------------------------------------------------
+		|	git add <file_name>                           |
+		|	git commit -m '<Nice message>'				  |
+		---------------------------------------------------
+---------------------------------------------------------
+8 - Checking differences:
+Git allows to check the differences between distinct points in the history.
+		-----------------------------------------------
+		|	git diff					              |
+		-----------------------------------------------	
+
+We can look for differences with:
+		• SHA1 (commit id)
+		• Branch names
+		• HEAD
+		• Tags		
+
+The syntax is the following:		
+		-----------------------------------------------
+		|	git diff <original> <modified>            |
+		|	# git diff <original>..<modified>		  |
+		-----------------------------------------------	
+For example, the following would show the changes that have been applied to dev branch, compared to a v1.0 tag:
+		-----------------------------------------------
+		|	git diff v1.0 dev  			              |
+		-----------------------------------------------	
+We can use our text Editor or IDE that support Git for a nicely presentation of difference between 2 files.	
+---------------------------------------------------------
+9 - Tagging:	
+Tag are used to mark an important point in history of the repository, usually, Releases.
+We can tag any type of Relases, stable, under-development or incomplete releases such as :
+		• Alpha
+		• Beta
+		• Release candidate (rc)
+Creating a tag is so simple, we just have to situate the HEAD in the point we want to tag, and just specify the tag name with the
+tag option:
+		-----------------------------------------------
+		|	git tag -a <tag-name> -m '<message>'	  |
+		|	Example:								  |
+		|	git tag -a v0.1-beta1 -m 'My First tag'	  |
+		-----------------------------------------------	
+<tag-name> : must be unique in a repository.
+<message> :the changes made from last tag are specified.
+
+To get all tags in reposiroty we use the following command:
+		---------------------------------------------------
+		|	git tag                      				  |
+		|	#The output will be:						  |
+		|		v1.0									  |
+		|		v1.0-beta								  |
+		---------------------------------------------------	
+Deleting tags:	
+		-------------------------------------------------
+		|	git tag -d <tag-name>						|
+		-------------------------------------------------
+---------------------------------------------------------
+10 - Undoing and deleting things:		
+
+10.1 Modifying the last commit:
+If we need to change the message of the last commit without changing any file:
+		-------------------------------------------------
+		|	git commit --amend -m '<new_message>'		|
+		-------------------------------------------------
+
+10.2 Back up to the last commit:
+This is for, after a commit, and we want to reset the changes, returning to the last commit’s state.
+For this, the command used is checkout, by specifying a file, this gets reseted to the state of the last commit.
+Example:
+		-------------------------------------------------------------
+		|	echo ’one’ > test.txt      								|
+		|	git add test.txt 		     							|
+		|   git commit -m 'commit one'								|
+		|	echo ’two’ > test.txt 									|
+		|   git checkout test.txt 									|
+		|	# The content of test.txt is now 'one'.       			|
+		-------------------------------------------------------------
+
+10.3 Deleting commits:		
+
+To delete a commit there are 2 ways:
+
+	--soft # The commit(s) will be removed, but the modifications saved in that/those commit(s) will remain.
+	--hard # The commit(s) will be removed, and won’t leave change made in the commit(s).
+
+If no flag is specified, the reset will be done softly.
+
+we use thos options in reste command like the following:
+		-------------------------------------------------
+		|	git reset --soft  <id_commit>				|
+		|	git reset --hard  <id_commit>				|
+		-------------------------------------------------
+The following command would remove the last commit, i.e., the commit where HEAD is pointing to:
+
+		-------------------------------------------------
+		|	git reset --hard HEAD~						|
+		-------------------------------------------------
+
+The ~ character is for indicating an ancestor. Used once, indicates the immediate parent; twice, the grandparent; and so on.
+
+we can specify the n (~n) ancestors that we want to remove:
+		-------------------------------------------------
+		|	git reset --hard HEAD~3						|
+		-------------------------------------------------
+Which would remove the last 3 commits.		
+---------------------------------------------------------
+11 - Branching strategies:			
