@@ -1,0 +1,291 @@
+			----------------------------------------------------------------------------------------
+			|	Writhing clean code is what you must do in order to call yourself a professional.  |
+			|	There is non reasonable excuse for doing anything less than your best.			   |
+			----------------------------------------------------------------------------------------
+			----------------------------------------------------------------------------------------
+			|						LeBlanc's Law: Later equals never.							   |
+			----------------------------------------------------------------------------------------
+			----------------------------------------------------------------------------------------
+			|			It is unprofessional for programmers to bend to the will of manager 	   |
+			|				who don't understand the risk of making messes.						   |
+			----------------------------------------------------------------------------------------
+								
+-------------------------------------------------			
+Introduction:
+The Only valid measurment of code qulity: WTFs/Minute
+Craftsmanship:
+There are two parts to learning craftsmanship: knowledge and work. 
+	Knowledge: You must gain the knowledge of principles, patterns, practices, and heuristcs thas a craftsman knows,
+			   and you must also grand the knowledge into your fingers and eyes.
+	Work: By hard working and practicing.
+Learning to write clean code is hard work, It requires more than just knowledge of principles and patterns,you must sweat over it.
+You must practice it yourself and watch yourself fails. You must watch others partice it and fails, You must see them sumble and retrace their steps.
+You must see them agonize over decision and see the price they pay for making yhos decision the wrong way.
+-------------------------------------------------			
+Chapter 1: Clean Code
+
+1.1 What's code?
+
+Code represents the details of the requerements.At some level those details cannot be ignored or abstracted; they have to be specified.
+And Specifiying requirements in such detail that a machine can execute them [is Programming]. such a specification is code.
+The only way to make the deadline, the only way to go fast, is to keep the code as clean as possible at all times.
+
+1.2 The art of clean code
+
+Writing clean code requires the disciplined use of the myriad little techniques applied through a painstakingly acquired sense of "Cleanliness".This "code-sense" is the key.
+A programmer without "code-sense" can look at messy module and recognize the mess but will have no idea what to do about it.
+A programmer with "code-sense" will look at a messy module and see options and variations.
+The "code-sense" will help programmer choose the best variation and guide him to plot a sequence of behavior preserving transformations to get from here to thers.
+In short, a programmer who writes clean code is an artist who can take a blank screen through a series of transoformations until it is an elegantly coded system.
+
+1.3 What is Clean Code?
+
+			Bjarne Stroustrup, inventor of C++ 
+			and author of The C++ Programming Language
+
+		I like my code to be [elegant] and [efficient]. 
+		The logic should be straightforward to make it hard
+		for bugs to hide,the dependencies minimal to
+		ease maintenance,error handling complete
+		according to an articulated strategy,and performance
+		close to optimal so as not to tempt people to make 
+		the code messy with unprincipled optimizations. 
+		Clean code [does one thing well].
+
+Elegent mean pleasingly, a clean code is pleasing to read. Reading is should make you smile the way a well-crafted music box or well-designed car would.
+Clean code does one thing well, is focused, each function, each class, each module exposes a single-minded attitude that remains entirely undistracted, and unpolluted, by the surrounding details.
+
+
+			Grady Booch, author of Object
+			Oriented Analysis and Design with Applications 
+
+		Clean code is simple and direct.
+		Clean code reads like well-written prose. 
+		Clean code never obscures the designer’s intent but rather 
+		is full of crisp abstractions and straightforward lines of control.
+
+Readability, clean code should read like well-writen prose. Clean code should cleary expose the tensions in the problem to be solved.
+Our code should be matter-of-fact as opposed to speculative. It should contain only what is necessaty.Our readers should peceive us to have been decisive.
+
+			“Big” Dave Thomas, founder 
+			of OTI, godfather of the Eclipse strategy
+
+		Clean code can be read,and enhanced by a
+		developer other than its original author.
+		It has unit and acceptance tests. 
+		It has meaningful names.
+		It provides one way rather than manyways for doing one thing. 
+		It has minimal dependencies,
+		which are explicitly defined, and provides a clear and minimal API.  
+		Code should be literate since depending on the language, not all
+		necessary information can be expressed clearly
+		in code alone.
+
+Unit test, the discipline of Test Driven developement (TDD).
+Code without tests, is not clean, No matter how elegant it is, no matter how readable and accessible, if it hath not tests, it be unclean.
+Minimal, smaller is better.
+Literate, the code should be composed in such a form as to make it readable by humans.
+
+
+			Michael Feathers, author of Working
+			Effectively with Legacy Code
+
+		I could list all of the qualities that I notice in 
+		clean code, but there is one overarching quality
+		that leads to all of them.
+		Clean code always looks like it was written by someone who cares.
+		There is nothing obvious that you can do to make it better.
+		All of those things were thought about by the code’s author,
+		and if you try to imagine improvements, you’re led back to
+		where you are,sitting in appreciation of the code someone left 
+		for you—code left by some-one who cares deeply about the craft
+
+Care,How to care for code? Someone has taken the time to keep it simple and orderly. They have paid appropriate attention to details. They have cared.
+
+
+			Ron Jeffries, author of Extreme Programming 
+			Installed and Extreme Programming Adventures in C#
+
+		In recent years I begin, and nearly end, with Beck’s
+		rules of simple code. 
+		In priority order, simple code:
+
+		• Runs all the tests;
+		• Contains no duplication;
+		• Expresses all the design ideas that are in the system;
+		• Minimizes the number of entities such as classes,methods, functions, and the like.
+
+		Of these, I focus mostly on duplication. When the same thing is done over and over,
+		it’s a sign that there is an idea in our mind that is not well represented in the code. 
+		I try to figure out what it is. 
+		Then I try to express that idea more clearly.
+		Expressiveness to me includes meaningful names, and I am likely to change the names of things several times before I settle in. 
+		With modern coding tools such as Eclipse,renaming is quite inexpensive, so it doesn’t trouble me to change. 
+		Expressiveness goes beyond names, however. I also look at whether an object or method is doing more than one thing. 
+		If it’s an object, it probably needs to be broken into two or more objects. 
+		If it’s a method, I will always use the Extract Method refactoring on it, resulting in one method
+		that says more clearly what it does, and some submethods saying how it is done.
+		Duplication and expressiveness take me a very long way into what I consider clean code, 
+		and improving dirty code with just these two things in mind can make a huge difference. 
+		There is, however, one other thing that I’m aware of doing, which is a bit harder to explain.
+		After years of doing this work, it seems to me that all programs are made up of very similar elements. 
+		One example is “find things in a collection.” Whether we have a database of employee records, 
+		or a hash map of keys and values, or an array of items of some kind, 
+		we often find ourselves wanting a particular item from that collection. 
+		When I find that happening, I will often wrap the particular implementation in a more abstract method or class. 
+		That gives me a couple of interesting advantages.
+		I can implement the functionality now with something simple, 
+		say a hash map, but since now all the references to that search are covered by my little abstraction, 
+		I can change the implementation any time I want. 
+		I can go forward quickly while preserving my ability to change later.
+		In addition, the collection abstraction often calls my attention to what’s “really”
+		going on, and keeps me from running down the path of implementing arbitrary collection
+		behavior when all I really need is a few fairly simple ways of finding what I want.
+		Reduced duplication, high expressiveness, and early building of simple abstractions.
+		That’s what makes clean code for me.
+
+No duplication, one thing, expressiveness, tiny abstractions.
+
+
+			Ward Cunningham, inventor of Wiki, 
+			inventor of Fit, coinventor of eXtreme Programming. 
+			Motive force behind Design Patterns. 
+			Smalltalk and OO thought leader. 
+		
+		The godfather of all those who care about code.
+		You know you are working on clean code when each
+		routine you read turns out to be pretty much what
+		you expected. 
+		You can call it beautiful code when 
+		the code also makes it look like the language was
+		made for the problem.
+
+When you read clean code you won't be surprised ad all. Inded, you won't even expend mush effort, clean code should be simple and compelling.
+
+1.4 We are Authors:
+
+The next time you write a line of code, remember you are an author, writhing for readers wh will judge your effort.
+Inded, the ratio of time spent reading vs.writing is well over 10.1.We are constantly reading old code as part of the effort to write new code.
+There's no way to write code without reading it, so making it easy tu read actually makes it easier to write.
+If you want to get done quickly, if your code to be easy to write, make it easy to read.
+
+1.5 The Boy Scout Rule:
+
+			----------------------------------------------------------------------------------------
+			|				Leave the compground cleaner than you found it.						   |
+			----------------------------------------------------------------------------------------
+If we all checked-in our code a little cleaner than when we checked it out, the code simply could not rot.
+-------------------------------------------------			
+Chapter 2: Meaningful Names:
+
+Introduction:
+Names are everywhere in software. We name our variables, our functions, our arguments, classes, and packages.we name our source files and directories that contain them.
+We name our jar files and ear files, we name and name and name, because we do so much of it, we'd better do it well, what follows are some simple rules for creating good names
+
+2.1 Use Intention-Relealing Names:
+Choosing good nales takes time but saves more than it takes.
+So take care with your names and change them when you find better ones.Everyone who reads your code (including you) will be happier if you do.
+			-----------------------------------------------------------------------------------------------------
+			|			The name of a variable, function, or class, should answer all the big questions. 		|		
+			|					It should tell you why it exists, what it does, and how it used.				|
+			-----------------------------------------------------------------------------------------------------
+
+			-----------------------------------------------------------------------------------------------------
+			|			If a name requeries a comment, then the name does not reveal its intent.		 		|		
+			-----------------------------------------------------------------------------------------------------
+			
+The problem isn't the simplicity of the code, but the implicity of the code, but with code names, the code become moch more explicit, and the intention is revealing.
+With the simple and good names, it's not difficult to understand what's going on.
+
+2.2 Avoid Disinformation:
+Programmers must avoid leaving false clues that obscure the meaning of code. We should avoid words whose entrenched meanings vary from our intended meaning.
+Spelling similar concepts similary is inforamtion, using inconsistent spellings is disinforamtion.
+
+2.3 Make meaningful Distinctions:
+Programmers create problems for themselves when they write code solely to satisfy a complier or interpreter.
+Like:  Klass or Kontroller.
+
+2.4 Use pronounceable names:
+If you can't pronounce the name, you can't discuss it whitout sounding like an idiot, make your names pronounceable.
+
+2.5 Use searchable names:
+The lenght of a name should correspond to the size of it's scope.
+If a variable or constant might be seen or used in multiple places in a body of code, it is imperative to give it a search-friendly name.
+
+2.6 Avoid Encoding:
+Encoded names are seldom pronounceable and are easy to mis-type like using Hungarian Notation.
+
+2.7 Member prefixes:
+The more we read the code, the less we see the prefixes (Example: m_dsc for a memebre variable of class.)
+
+2.8 Interface and Implementation:
+Avoid Encodings like hungarian notation.
+Examples:
+	IAccount for Account interface
+It's prefable to leave interface unadorned.
+We can use just Account for interface, but the implematation we can name it like the following: 
+	AccountImpl or CAccount
+that give the following code:
+	interface Account{}
+	class AccountImpl impliments Account{}
+Instead of:
+	interface IAccount{}
+	class Account impliments IAccount{}
+
+2.9 Avoid mental mapping:
+Single-letter name is a poor choice, clarity is king. Professionals use their powers for good and write code that others can understand.
+
+2.10 Class names:
+Class and objects should have noun or noun phrase names like:
+	Customer, WikiPage, Account and AddressParser.
+Avoid words in the class name like:
+	Manger, Processor, Data or Info.
+A class should not be a verb.
+
+2.11 Method names:
+Method should have verb or verb phrase name like:
+	postPayment, deletePage or save
+Accessors, mutators and predicates should be names for their value and prefexed with:
+	get, set and is.
+
+2.12 Don't be cute
+Choose clarity over entertainment value.
+Cuteness in code often appears in the form of colloquialisms or slang.
+
+			-----------------------------------------------------------------------------------------------------
+			|						Say what you mean. Mean what you say.								 		|		
+			-----------------------------------------------------------------------------------------------------
+
+2.13 Pick one word per concept
+Pick one word for one abstract concept and stick with it.
+A consistent lexicon is a great boon to the programmers who must use your code.
+
+2.14 Don't Pun:
+Avoid using the same word for two puposes. Using the same term for two different ideas is essentially a pun.
+Our goal, as authors, is to make our code as easy as possible to understand. we want our code to be a quick skim, not an intense study.
+
+2.15 Use silution Domain Names:
+Choosing technical names for those things is usually the must appropriate course.
+
+2.16 Use problem Domain Names:
+Use the name from the problem domain.
+Separating solution and problem domain concepts is part of the job of a good programmers and designer. The code that hase more to do with problem domain concepts should have
+names drawn from the problem domain.
+
+2.17 Add Meaningful Context:
+You need to place names in context for your reader by enclosing them well-named classes, functions, or namespaces.
+
+2.18 Don't add Gratuitous Context:
+Shorter names are generally better than longer ones, so long as they are clear. Add no more context to a names than is necessary.
+
+Final Words:
+The hardest thing about choosing names is that requires good descriptive skills and a shared cultural background. this is a teaching issue rather than a technical, business, 
+or management issue.
+Code reads like paragraphs and sentences, or at leats like tables and data structure.
+
+
+
+
+
+
+
