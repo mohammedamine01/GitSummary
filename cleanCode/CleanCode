@@ -20,8 +20,33 @@ There are two parts to learning craftsmanship: knowledge and work.
 	Work: By hard working and practicing.
 Learning to write clean code is hard work, It requires more than just knowledge of principles and patterns,you must sweat over it.
 You must practice it yourself and watch yourself fails. You must watch others partice it and fails, You must see them sumble and retrace their steps.
-You must see them agonize over decision and see the price they pay for making yhos decision the wrong way.
+You must see them agonize over decision and see the price they pay for making those decisions the wrong way.
+-------------------------------------------------
+Design Smells, the Odors of code rot:
+
+Rigidity: 
+Is the tendency of a system to resist change,
+A System is regid when that system requires us to make many changes to many diffrent places in order to fix a single bug or add a single new behavior.
+
+Fragility:
+Is a system malfunctions in many unpredictable way when a single simple change is made,
+A system is fragile when the repair of a single bug or the addition of a single new feature causes a malfunction in one or many other parts of the system
+that have [no connection] with the part that was changed.
+
+Inseparability:
+An inseparable system is a system in which those parts that might be profitably used in another system cannot be separated out from the first system,
+A system is inseparable when the various points of that system cannot be independent and be used in some other system.
+
+Opacity:
+Is the tendency of a system to be structured that no amount of effort can be applied to devine (predict) the author's original intent,
+The system is opaque when reading the code tells us little or nothing about what the system does or the way it works.
+Opaque code is hard to read, hard to change, hard to understand.
+
+Why does code rot ?
+The only reason the code goes bad because we ruin it, we're the ones who make the mess, and we rot the code.
 -------------------------------------------------			
+If you want to go fast, you have to stay clean,The only to go fast, is to go well.
+-------------------------------------------------	
 Chapter 1: Clean Code
 
 1.1 What's code?
@@ -78,8 +103,7 @@ Our code should be matter-of-fact as opposed to speculative. It should contain o
 		It has minimal dependencies,
 		which are explicitly defined, and provides a clear and minimal API.  
 		Code should be literate since depending on the language, not all
-		necessary information can be expressed clearly
-		in code alone.
+		necessary information can be expressed clearly in code alone.
 
 Unit test, the discipline of Test Driven developement (TDD).
 Code without tests, is not clean, No matter how elegant it is, no matter how readable and accessible, if it hath not tests, it be unclean.
@@ -160,13 +184,13 @@ No duplication, one thing, expressiveness, tiny abstractions.
 		the code also makes it look like the language was
 		made for the problem.
 
-When you read clean code you won't be surprised ad all. Inded, you won't even expend mush effort, clean code should be simple and compelling.
+When you read clean code you won't be surprised at all. Indeed, you won't even expend mush effort, clean code should be simple and compelling.
 
 1.4 We are Authors:
 
-The next time you write a line of code, remember you are an author, writhing for readers wh will judge your effort.
-Inded, the ratio of time spent reading vs.writing is well over 10.1.We are constantly reading old code as part of the effort to write new code.
-There's no way to write code without reading it, so making it easy tu read actually makes it easier to write.
+The next time you write a line of code, remember you are an author, writhing for readers who will judge your effort.
+Indeed, the ratio of time spent reading vs.writing is well over 10.1.We are constantly reading old code as part of the effort to write new code.
+There's no way to write code without reading it, so making it easy to read actually makes it easier to write.
 If you want to get done quickly, if your code to be easy to write, make it easy to read.
 
 1.5 The Boy Scout Rule:
