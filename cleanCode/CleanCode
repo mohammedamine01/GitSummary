@@ -207,7 +207,7 @@ Names are everywhere in software. We name our variables, our functions, our argu
 We name our jar files and ear files, we name and name and name, because we do so much of it, we'd better do it well, what follows are some simple rules for creating good names
 
 2.1 Use Intention-Relealing Names:
-Choosing good nales takes time but saves more than it takes.
+Choosing good names takes time but saves more than it takes.
 So take care with your names and change them when you find better ones.Everyone who reads your code (including you) will be happier if you do.
 			-----------------------------------------------------------------------------------------------------
 			|			The name of a variable, function, or class, should answer all the big questions. 		|		
@@ -217,13 +217,22 @@ So take care with your names and change them when you find better ones.Everyone 
 			-----------------------------------------------------------------------------------------------------
 			|			If a name requeries a comment, then the name does not reveal its intent.		 		|		
 			-----------------------------------------------------------------------------------------------------
+If you have to go into the code, in order to understand the name, it's a bad name.
+Names, are not for your convenience, they are your primary tool fot communicating intent, and communicating your intent, is always your first priority, it even more importent than making sure the code works
+-> So always choose names, that communicate your intent.
 			
-The problem isn't the simplicity of the code, but the implicity of the code, but with code names, the code become moch more explicit, and the intention is revealing.
+The problem isn't the simplicity of the code, but the implicity of the code, but with code names, the code become much more explicit, and the intention is revealing.
 With the simple and good names, it's not difficult to understand what's going on.
 
 2.2 Avoid Disinformation:
+Disinformation: is a in code that didn't what said, that say something other than he mean.
+Example:
+	Give a concrete name to an abstrcat class. 
 Programmers must avoid leaving false clues that obscure the meaning of code. We should avoid words whose entrenched meanings vary from our intended meaning.
 Spelling similar concepts similary is inforamtion, using inconsistent spellings is disinforamtion.
+			-----------------------------------------------------------------------------------------------------
+			|			Name id like honorable human, should say what it means and mean what it says.     		|		
+			-----------------------------------------------------------------------------------------------------
 
 2.3 Make meaningful Distinctions:
 Programmers create problems for themselves when they write code solely to satisfy a complier or interpreter.
@@ -231,13 +240,18 @@ Like:  Klass or Kontroller.
 
 2.4 Use pronounceable names:
 If you can't pronounce the name, you can't discuss it whitout sounding like an idiot, make your names pronounceable.
+Names are not just four our convenience, they are the tools we use to communicate, others need to communicate, too, so make your names pronouceable, so your names pronouceable so that others can use them to communicate with each other.
 
 2.5 Use searchable names:
 The lenght of a name should correspond to the size of it's scope.
 If a variable or constant might be seen or used in multiple places in a body of code, it is imperative to give it a search-friendly name.
 
 2.6 Avoid Encoding:
-Encoded names are seldom pronounceable and are easy to mis-type like using Hungarian Notation.
+Encoded names are seldom pronounceable and are easy to mis-type like using Hungarian Notation (HN).
+Example of Hungarian Notation (HN):
+	C: Class 		CAccount
+	I: Interface 	IAccount
+	p: Pointer		pAccount
 
 2.7 Member prefixes:
 The more we read the code, the less we see the prefixes (Example: m_dsc for a memebre variable of class.)
@@ -271,6 +285,11 @@ Method should have verb or verb phrase name like:
 	postPayment, deletePage or save
 Accessors, mutators and predicates should be names for their value and prefexed with:
 	get, set and is.
+Enum tend to be states or object descripters (Adjectifs)
+Example:
+	enum Color {RED, GREEN, BLUE};
+	enum Status {PENDING, CLOSED, CANCELLED};
+	enum Size {SMALL, MEDIUM, LARGE};
 
 2.12 Don't be cute
 Choose clarity over entertainment value.
@@ -288,13 +307,13 @@ A consistent lexicon is a great boon to the programmers who must use your code.
 Avoid using the same word for two puposes. Using the same term for two different ideas is essentially a pun.
 Our goal, as authors, is to make our code as easy as possible to understand. we want our code to be a quick skim, not an intense study.
 
-2.15 Use silution Domain Names:
+2.15 Use solution Domain Names:
 Choosing technical names for those things is usually the must appropriate course.
 
 2.16 Use problem Domain Names:
 Use the name from the problem domain.
-Separating solution and problem domain concepts is part of the job of a good programmers and designer. The code that hase more to do with problem domain concepts should have
-names drawn from the problem domain.
+Separating solution and problem domain concepts is part of the job of a good programmers and designer. The code that has
+more to do with problem domain concepts should have names drawn from the problem domain.
 
 2.17 Add Meaningful Context:
 You need to place names in context for your reader by enclosing them well-named classes, functions, or namespaces.
@@ -302,13 +321,171 @@ You need to place names in context for your reader by enclosing them well-named 
 2.18 Don't add Gratuitous Context:
 Shorter names are generally better than longer ones, so long as they are clear. Add no more context to a names than is necessary.
 
+2.19 The Scope Length Rule:
+Variable:
+	- The longer the scope of the variable, the longer the name of the varibale,
+	- The variable in very short scopes, should have very short names.
+Function/Method/Class:
+	- The longer the scope, the shorter the function or class name should be (for public)
+	- The shorter the scope, the longer it should be (for private)
+	- Drive classes tend to be a little bit longer
+	Example:
+					+---------+
+					| Account | 
+					+---------+
+						 ▲
+					 	 |
+				  +---------------+
+				  | SavingAccount |   			 
+				  +---------------+
+
+Recap:
+ 1. Choose your names thoughtfully,
+ 2. Communicate your intent,
+ 3. Avoid disinformation,
+ 4. Choose a Pronounceable names,
+ 5. Avoid Encoding,
+ 6. Choose Parts of speech well,
+ 7. The scope rule.
+
+			-----------------------------------------------------------------------------------------------------
+			|						Any fool can write code a computer can understand 							|
+			|												BUT 												|
+			|					it take a good programmer to write code a human can understand					|
+			|											-Martin Fowler-								 			|		
+			-----------------------------------------------------------------------------------------------------
+
 Final Words:
 The hardest thing about choosing names is that requires good descriptive skills and a shared cultural background. this is a teaching issue rather than a technical, business, 
 or management issue.
 Code reads like paragraphs and sentences, or at leats like tables and data structure.
 
+This second chapter, is based on the Ottinger's Rules for Variable and Class Naming, is the following:
 
 
+Class and method naming good advice
+Ottinger's Rules for Variable and Class Naming
+
+
+When a new developer joins a project which is already in progress, there is a steep learning curve. If the new developer already knows the methodology and programming language, some of this is reduced. If the new developer already knows the problem domain fairly well, this also shortens the ramp-up time.
+
+There is often a great deal of artificial curve which is added to a project by decree or by accident.
+
+The goal of this rule set is to help avoid creating one type of artifical learning curve, that of decyphering or memorizing strange names.
+
+The rules were developed in group discussions, largely by examining poor names and dissecting them to determine the cause of their 'badness'.
+
+    Use Pronouncable names:
+    If you can't pronounce it, you can't discuss it without sounding like an idiot. "Well, over here on the bee cee arr three cee enn tee we have a pee ess zee kew int, see?"
+    I company I know has genymdhms (generated date, year, month day, hour, minute and second) so they walked around saying "gen why emm dee aich emm ess". I have an annoying habit of pronouncing everything as-written, so I started saying "gen-yah-mudda-hims". It later was being called this by a host of designers and analysts, and we still sounded silly. But we were in on the joke, so it was fun.
+    Don't do that. It would have been so much better if it had been called 'timestamp' or something.
+
+    Avoid Encodings:
+    Encoded names require decyphering. This is true for hungarian and other 'type-encoded' or otherwise encoded variable names. Besides, encoded names are seldom pronouncable (#1).
+    When you worked in name-length-challenged programs, you probably violated this rule with impunity and regret. Fortran forced it by basing type on the first letter, making the first letter a 'code' for the type. Hungarian has taken this to a whole new level.
+    We've all seen bizarre encoded naming standards for files, producing (real name) cccoproi.sc and SRD2T3. This is an artificially-created naming standard in the modern world of long filenames, though it had it's time.
+    Of course, you can get used to anything, but why create an artificial learning curve for new hires? Avoid this if you  can avoid it.
+
+    Don't be too cute:
+    If the names are too clever, they will be memorable only to people who share your sense of humor and remember the joke.
+
+    Most meanings have multiple words. Pick ONE:
+    Pick one word and stick with it. For instance, it's confusing to have 'fetch', 'retrieve' and 'get' as members of the same class.
+    How do you choose?
+    Likewise, it's confusing to have a 'controller' and a 'manager' and a 'driver' in the same process.
+    The names are synonyms, making you thing the variables are the same, but there are several with mechanically different names, which leads you to think that they're not the same. You don't know what's different, or whether there is a difference.
+    Instead of using different words, use words which describe different the different use or aspects of things (be specific).
+
+    Most words have multiple meanings:
+    Don't use the same word for two purposes, if you can at all avoid it.
+    Remember that it's not polite at all to have the same name in two scopes.
+
+    Nouns and Verb Phrases
+    Classes and objects should have noun or noun phrase names.
+    There are some methods (commonly called "accessors") which calculate and/or return a value. These can and probably should have noun names. This way accessing a person's first name can read like:
+
+    string x = person.name();
+
+    Other methods (sometimes called "manipulators", but not so commonly anymore) cause something to happen. These should have verb or verb-phrase names. This way, changing a name would read like:
+
+    fred.changeNameTo("mike") 
+
+    Use Solution Domain Names:
+    Use CS terms, algorithm names, pattern names, math terms, etc ...
+
+    Yeah, it's a bit heretical, but you don't want your developers having to run back and forth to the customer asking what every
+    name means *if* they already know the concept by a different name.
+
+    We're talking about code here, so you're more likely to have your code maintained by a CS major or informed programmer than by a domain expert with no programming background. End users of a system very seldom read the code, but the maintainers have to.
+
+     
+    Also Use Problem Domain Names:
+    When there is no 'programmer-ese' for what you're doing, use the name from the problem domain. At least the programmer who maintains your code *can* ask his boss what it means. In analysis, this becomes the superior rule over "Use Solution Domain Names", because the end-user is the target audience.
+
+     
+    Avoid Mental Mapping:
+    Readers shouldn't have to mentally translate your names into other names they already know.
+
+     
+    Nothing is intuitive:
+    Sadly, and in contradiction to the above, all names require some mental mapping, since this is the nature of language.
+    If you use a term which might not be known to your audience, you must map it to the concept you'd like it to represent.
+
+    For this reason, most important names should be in a glossary or should be explained in comments at least.
+
+     
+    Avoid Disinformation:
+    Avoid words which already mean something else. For example, "hp", "aix", and "sco" would be horrible variable names because
+    they are the names of Unix platforms or variants. Even if you are coding a hypotenuse and hp looks like a good abbreviation,it violates too many rules and also is disinformative.
+
+    Likewise don't refer to a grouping of accounts as an AccountList unless it's actually a list. A list means something to CS people. It denotes a certain type of data structure. If the container isn't a list, you've disinformed the programmer who has to maintain your code. AccountGroup or BunchOfAccounts would have been better.
+
+     
+    Names are only Meaningful in Context:
+    There are few names which are meaningful in and of themselves. Most, however are not. Instead, you need to place names in
+    context for your reader by enclosing them in classes, well-named functions, or comments.
+
+    The term 'tree' needs some disambiguation, for example if the application is a forestry application. You may have syntax trees, red-black or b-trees, and also elms, oaks, and pines. The word 'tree' is a good word, and is not to be avoided, but it must be
+    placed in context every place it is used.
+
+     
+    Don't add Artificial Context
+    In an imaginary application called 'Gas Station Deluxe', it is a bad idea to prefix every class with 'GSD' if there is a chance that the class might later be used in 'Inventory Manager' (at which time the prefix becomes meaningless).
+
+    Likewise, say you invented a 'Mailing Address' class in GSD's accounting module, and you named it AccountAddress.
+    Later, you need a mailing address for your customers. Do you use 'AccountAddress'?
+
+    In both these cases, the naming reveals an earlier short-sightedness regarding reuse. It shows that there was a failing at the design level to look for common classes across an application.
+
+    The names 'accountAddress' and 'customerAddress' are fine names for instances of the class.
+
+     
+    No Disambiguation without Differentiation
+    The first part of this is to avoid "noise words" in your variable names.
+
+    Imagine that you have a Product class. If you have another called ProductInfo or ProductData, you have failed to make the names different. Info and Data are like "stuff": basically meaningless. Likewise, using the words Class or Object in an OO system is so much noise.
+
+    In short, sometimes people disambiguate for the compiler without differentiating for the reader.
+
+    MoneyAmount is no better than 'money'. CustomerInfo is no better than Customer.
+    The word 'variable' should never appear in a variable name.
+    The word 'table' should never appear in a table name.
+    How is NameString better than Name? Would a Name ever be a floating point number? Probably not. If so, it breaks an earlier rule about disinformation.
+    There is an application I know of where this is illustrated. I've changed the name of the thing we're getting to protect the guilty:
+
+     
+
+             getSomething();
+
+             getSomethings();
+
+             getSomethingInfo();
+
+
+    The second tells you there are many of these things. The first lets you know you'll get one, but which? The third tells you nothing more than the first, but the compiler (and hopefully the author) can tell them apart. You are going to have to work harder.
+    If you have a name used twice, you must disambiguate in such a way that the reader knows what the different versions offer her, instead of merely that they're different.
+
+The hardest thing about choosing good names is that it requires good descriptive skills and a shared cultural background. This is a teaching issue, rather than a technical, business, or management issue. As a result many people in this field don't do it very well.
 
 
 
