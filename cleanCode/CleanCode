@@ -363,7 +363,8 @@ This second chapter, is based on the Ottinger's Rules for Variable and Class Nam
 -------------------------------------------------			
 Chapter 3: Functions:
 
-Function are the first line of organization in any program.
+Function are the first line of organization in any program, it must have well-chosen, highly descriptive name, that tell what tha function does.
+A long function is where the classes go to hide, and that always can be refactored into one or more classes
 
 What make a function easy to read and understand?
 How can make a function communicate its intent?
@@ -388,6 +389,14 @@ Therefore, the indent level of a function should not be greater the one or two. 
 			-----------------------------------------------------------------------------------------------------
 			|		FUNCTION SHOULD DO ONE THING. THEY SHOULD DO IT WELL. THEY SHOULD DO IT ONLY.		 		|		
 			-----------------------------------------------------------------------------------------------------
+But how figure out a function do just one thing?
+You continue to extract function until you cannot extract any more.
+            -----------------------------------------------------------------------------------------------------
+			|		                        EXTRACT TILL YOU DROP.                              		 		|
+			-----------------------------------------------------------------------------------------------------
+After all, if you can extract one function from another, then the original function was doing more than one thing by definition.
+In fact, the function must be small, until that the 'if' statement, and 'while' loop, don't need braces ({}).
+I look at braces as an opportunity to EXTRACT TILL YOU DROP.
 
 The reason why, we write functions, is to decompose a larger concept into a set of steps at the next level of abstraction.
 The program should be very cleary that contains steps at many different levels of abstraction, So it is cleary doing more than one thing.
