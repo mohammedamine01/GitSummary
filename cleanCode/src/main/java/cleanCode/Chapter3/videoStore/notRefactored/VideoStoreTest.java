@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class VideoStoreTest extends TestCase {
 
-    Customer customer;
+    private Customer customer;
 
     public VideoStoreTest(String name) {
         super(name);
