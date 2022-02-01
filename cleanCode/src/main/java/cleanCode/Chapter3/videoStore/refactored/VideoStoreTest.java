@@ -71,10 +71,10 @@ public class VideoStoreTest {
 
         assertEquals(
                 "Rental Record for Customer\n" +
-                        "\tRegular 1\t2.0\n" +
-                        "\tRegular 2\t2.0\n" +
-                        "\tRegular 3\t3.5\n" +
-                        "You owed 7.5\n" +
+                        "\tRegular 1\t2,0\n" +
+                        "\tRegular 2\t2,0\n" +
+                        "\tRegular 3\t3,5\n" +
+                        "You owed 7,5\n" +
                         "You earned 3 frequent renter points\n",
                 statement.generate());
     }
