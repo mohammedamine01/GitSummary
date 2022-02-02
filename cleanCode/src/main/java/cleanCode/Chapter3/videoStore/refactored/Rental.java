@@ -14,11 +14,17 @@ public class Rental {
         return movie;
     }
 
-    public int getDaysRented() {
-        return daysRented;
-    }
-
     public String getTitle() {
         return movie.getTitle();
     }
+
+    double determineAmount() {
+        return movie.determineAmount(daysRented);
+    }
+
+    int determineFrequentRenterPoint() {
+        return movie.determineFrequentRenterPoint(daysRented);
+    }
+
+
 }
