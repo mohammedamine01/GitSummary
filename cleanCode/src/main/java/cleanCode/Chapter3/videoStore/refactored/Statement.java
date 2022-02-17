@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Statement {
+
     private String customerName;
-    private List<Rental> rentals = new ArrayList<Rental>();
+    private List<Rental> rentals = new ArrayList<>();
     private double totalAmount;
     private int frequentRenterPoints;
-
 
     public Statement(String customerName) {
         this.customerName = customerName;
@@ -20,12 +20,7 @@ public class Statement {
 
     public String generate() {
         clearTotals();
-        String statementText = header();
-
-        statementText += rentalLines();
-        statementText += footer();
-
-        return statementText;
+        return header() + rentalLines() + footer();
     }
 
     private void clearTotals() {
