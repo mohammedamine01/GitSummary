@@ -379,7 +379,7 @@ Every function in the program was just two, or three, or four lines long.
 That's how short your functions should be, very small.
 
 3.2 Blocks and Indenting:
-This implies that the blocks within 'if' statements, 'else' statements, 'while' statements, and si on should be one line long. Probably that line should be a function call.
+This implies that the blocks within 'if' statements, 'else' statements, 'while' statements, and so on should be one line long. Probably that line should be a function call.
 Not  only does this keep the enclosing function small, but it also adds documentary value because the function called within the block can have a nicely descriptive name.
 This also implies that functions should not be large enough to hold nested structure.
 Therefore, the indent level of a function should not be greater the one or two. this, of course, make the functions easier to read and to understand.
@@ -407,10 +407,58 @@ Functions that do one thing cannot be reasonably divided into sections.
 
 3.5 One level of Abstraction per function:
 In order to make sure our functions are doing 'one thing', we need to make sure that the statements within our function are all at the same level of abstraction.
-Mixing levels od abstraction within a function is always confusing. Readers may not be able to tell whether a particular expression is an essential concept or a detail.
+Mixing levels of abstraction within a function is always confusing. Readers may not be able to tell whether a particular expression is an essential concept or a detail.
 Worse, like broken windows, one details are mixed with essential concepts, more and more details tend to accurate within the function.
 
+3.6 Reading code from Top to bottom: The Stepdown Rule
+We want the code to read like a top-down narrative. We want every function to be followed by those at the next level of abstraction so that we can read the program, descending one level of abstraction at a time as we read down the list of function. I call this "The Stepdown Rule".
+To say this differently, we want to be able to read the program as though it were a set TO paragraphs, each of which is describing the current level of abstraction and referencing subsequent TO paragraphs at the next level down.
+			 
+			 class 								Abstract						
+			 	private variables					▲
+			 		public methods 					|
+			 			private method 				|
+			 				private method 			|
+			 			private method 				|
+			 				private method 			|
+			 				private method 			|
+			 		public methods 					|
+			 			private method 				|
+			 			private method 				▼
+			 									Details
+
+3.7 Switch Statements:
+Switch statements always do N things, and it's a missed opportunity to use polymorphisme.
+The solution of this problem is to bury the switch statement in the basement of an ABSTRACTION FACTORY, and never let anyone seet it.
 
 
+				    +--------+ 																		+--------+
+				    |  APP   | 																		|  APP   |  			 											
+				    +--------+ 																		+--------+
+				     	|																				|   
+				     	|																				▼           	                      
+	+-------------------------------------------+				__					+-------------------------------------------+
+	|    		   	 Switch			            |   			__		 			|    		   	 Abstract Base Class 		|   			 
+	+-------------------------------------------+				__					+-------------------------------------------+
+		|			|			|			 |											△			△			△			△
+		|	    	|		    |	   		 |          								|	    	|		    |	   		|          
+		▼		    ▼		    ▼		     ▼               							|		    |		    |		    |               
+   +-------+    +-------+  +-------+     +-------+									+-------+    +-------+  +-------+     +-------+
+   |Module1|    |Module2|  |Module3|     |Module4|									|Module1|    |Module2|  |Module3|     |Module4|
+   +-------+    +-------+  +-------+     +-------+									+-------+    +-------+  +-------+     +-------+
+   				Downstream modules     															 Derivatives modueles
+			
+			-----------------------------------------------------------------------------------------------------------
+			|		                        Each of case of the switch statement became a dirived class               |
+			|									that implements that method to do what the case did                   |
+			-----------------------------------------------------------------------------------------------------------
 
-
+3.8 Use Descriptive Names:
+Ward's principale: "You know you are working on clean code when each routine turns out to be pretty much what you expected".
+The smaller and more focused a function is, the easier it is to choose a descriptive name.
+Don't be afraid to make a name long. A long descriptive name is better than short enigmatic name. A long descriptive name is better than a long descriptive comment.
+Use a naming convention that allows multiple words to be easilyread in the function names, and then make use of those multiple words to give the function a name that say what it does.
+			-----------------------------------------------------------------------------------------------------------
+			|	Use the change signature method, class variable refactoring to find the approporiate name.            |
+			-----------------------------------------------------------------------------------------------------------
+3.9 Function Arguments:
