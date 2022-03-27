@@ -462,3 +462,45 @@ Use a naming convention that allows multiple words to be easilyread in the funct
 			|	Use the change signature method, class variable refactoring to find the approporiate name.            |
 			-----------------------------------------------------------------------------------------------------------
 3.9 Function Arguments:
+The ideal number of arguments for a function is Zero(nildac). 
+Next comes one (monadic), followed closely by two(dyadic).
+Three arguments (triadic) should be avoided where possible.
+More than three(polydic) requires very special justification and then shouldn't be used anyway.
+
+Arguments are even harder from a testing point of view.Imagine the difficulty of writing all the test cases to ensure tha all the various conbinations of arguments work properly.
+If there are no arguments, this is trivial. if there's one arguement, it's not too hard, with two arguments the problem gets a bit more challenging. 
+With more than two arguments, testing every combination of appropriate values can be daunting.
+Output arguments are harder to understand than input arguments. when we read a function, we are used to the idea of information going 'in' to the function through arguments
+and 'out' through the return value. We don't usually expect information to be going out through the arguments. So output arguments often cause us to do a double-take.
+
+3.10 Common Monadic forms:
+Choose names and context carefully.
+
+3.11 Flag arguments:
+Flag arguments are ugly, Passing a boolean into a function is a truly terrible practice.
+This function does more than one thing. It does one thing if the flag is true and another if the flag is false.
+
+3.12 Dyadic Function
+A function with two arguments is harder to understand than monadic function.
+Example:
+		assertEquals(expected, actual)
+How many time have you put 'actual' where the 'expected' should be? 
+The two arguements have no natural ordering. The 'expected', 'actual' ordering is a convention that requires practice to learn.
+
+3.13 Triads
+Fucntions tha take three arguements are significantly harder to understand than dyads. 
+The issues of ordering, pausing, and ignoring are more than soubled, we need to be very carefully before creating a traid.
+ 
+3.14 Argument Objects
+When a function seems to need more than two or three arguments, it is likely that some of those arguments ought to be wrapped into a class of their own.
+Exemple:
+		Circle makeCircle(double x, double y, double radius); = Circle makeCircle(Point centre, double radius); 
+
+3.15 Argument Lists:
+Function that take variable arguments can be monads, dayads or even triads. but it would be a mistake to give them more arguements that that.
+Example:
+	void monad(Integer... args);
+	void dyad(String name, Integer... args);
+	void traid(String name,int count, Integer... args);
+
+3.16 Verbs and Keywords
