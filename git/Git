@@ -678,6 +678,11 @@ For example, the following would show the changes that have been applied to dev 
 		|	git diff v1.0 dev  			              |
 		-----------------------------------------------	
 We can use our text Editor or IDE that support Git for a nicely presentation of difference between 2 files.	
+
+Get the difference between files of branches:
+ 		-----------------------------------------------
+		|	git diff --name-status Branch1..Branch2   |
+		-----------------------------------------------	
 ---------------------------------------------------------
 9 - Tagging:	
 Tag are used to mark an important point in history of the repository, usually, Releases.
