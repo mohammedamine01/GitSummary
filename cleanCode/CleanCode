@@ -12,22 +12,47 @@
 								
 -------------------------------------------------			
 Introduction:
-The Only valid measurment of code qulity: WTFs/Minute
+The Only valid measurement of code quality: WTFs/Minute
 Craftsmanship:
 There are two parts to learning craftsmanship: knowledge and work. 
-	Knowledge: You must gain the knowledge of principles, patterns, practices, and heuristcs thas a craftsman knows,
+	Knowledge: You must gain the knowledge of principles, patterns, practices, and heuristics this a craftsman knows,
 			   and you must also grand the knowledge into your fingers and eyes.
 	Work: By hard working and practicing.
 Learning to write clean code is hard work, It requires more than just knowledge of principles and patterns,you must sweat over it.
-You must practice it yourself and watch yourself fails. You must watch others partice it and fails, You must see them sumble and retrace their steps.
-You must see them agonize over decision and see the price they pay for making yhos decision the wrong way.
+You must practice it yourself and watch yourself fails. You must watch others particle it and fails, You must see them stumble and retrace their steps.
+You must see them agonize over decision and see the price they pay for making those decisions the wrong way.
+-------------------------------------------------
+Design Smells, the Odors of code rot:
+
+Rigidity: 
+Is the tendency of a system to resist change,
+A System is regid when that system requires us to make many changes to many different places in order to fix a single bug or add a single new behavior.
+
+Fragility:
+Is a system malfunctions in many unpredictable way when a single simple change is made,
+A system is fragile when the repair of a single bug or the addition of a single new feature causes a malfunction in one or many other parts of the system
+that have [no connection] with the part that was changed.
+
+Inseparability:
+An inseparable system is a system in which those parts that might be profitably used in another system cannot be separated out from the first system,
+A system is inseparable when the various points of that system cannot be independent and be used in some other system.
+
+Opacity:
+Is the tendency of a system to be structured that no amount of effort can be applied to devine (predict) the author's original intent,
+The system is opaque when reading the code tells us little or nothing about what the system does or the way it works.
+Opaque code is hard to read, hard to change, hard to understand.
+
+Why does code rot ?
+The only reason the code goes bad because we ruin it, we're the ones who make the mess, and we rot the code.
 -------------------------------------------------			
+If you want to go fast, you have to stay clean,The only to go fast, is to go well.
+-------------------------------------------------	
 Chapter 1: Clean Code
 
 1.1 What's code?
 
-Code represents the details of the requerements.At some level those details cannot be ignored or abstracted; they have to be specified.
-And Specifiying requirements in such detail that a machine can execute them [is Programming]. such a specification is code.
+Code represents the details of the requirements.At some level those details cannot be ignored or abstracted; they have to be specified.
+And Specifying requirements in such detail that a machine can execute them [is Programming]. such a specification is code.
 The only way to make the deadline, the only way to go fast, is to keep the code as clean as possible at all times.
 
 1.2 The art of clean code
@@ -35,8 +60,8 @@ The only way to make the deadline, the only way to go fast, is to keep the code 
 Writing clean code requires the disciplined use of the myriad little techniques applied through a painstakingly acquired sense of "Cleanliness".This "code-sense" is the key.
 A programmer without "code-sense" can look at messy module and recognize the mess but will have no idea what to do about it.
 A programmer with "code-sense" will look at a messy module and see options and variations.
-The "code-sense" will help programmer choose the best variation and guide him to plot a sequence of behavior preserving transformations to get from here to thers.
-In short, a programmer who writes clean code is an artist who can take a blank screen through a series of transoformations until it is an elegantly coded system.
+The "code-sense" will help programmer choose the best variation and guide him to plot a sequence of behavior preserving transformations to get from here to theirs.
+In short, a programmer who writes clean code is an artist who can take a blank screen through a series of transformations until it is an elegantly coded system.
 
 1.3 What is Clean Code?
 
@@ -64,7 +89,7 @@ Clean code does one thing well, is focused, each function, each class, each modu
 		Clean code never obscures the designer’s intent but rather 
 		is full of crisp abstractions and straightforward lines of control.
 
-Readability, clean code should read like well-writen prose. Clean code should cleary expose the tensions in the problem to be solved.
+Readability, clean code should read like well-written prose. Clean code should cleary expose the tensions in the problem to be solved.
 Our code should be matter-of-fact as opposed to speculative. It should contain only what is necessaty.Our readers should peceive us to have been decisive.
 
 			“Big” Dave Thomas, founder 
@@ -78,8 +103,7 @@ Our code should be matter-of-fact as opposed to speculative. It should contain o
 		It has minimal dependencies,
 		which are explicitly defined, and provides a clear and minimal API.  
 		Code should be literate since depending on the language, not all
-		necessary information can be expressed clearly
-		in code alone.
+		necessary information can be expressed clearly in code alone.
 
 Unit test, the discipline of Test Driven developement (TDD).
 Code without tests, is not clean, No matter how elegant it is, no matter how readable and accessible, if it hath not tests, it be unclean.
@@ -160,19 +184,19 @@ No duplication, one thing, expressiveness, tiny abstractions.
 		the code also makes it look like the language was
 		made for the problem.
 
-When you read clean code you won't be surprised ad all. Inded, you won't even expend mush effort, clean code should be simple and compelling.
+When you read clean code you won't be surprised at all. Indeed, you won't even expend mush effort, clean code should be simple and compelling.
 
 1.4 We are Authors:
 
-The next time you write a line of code, remember you are an author, writhing for readers wh will judge your effort.
-Inded, the ratio of time spent reading vs.writing is well over 10.1.We are constantly reading old code as part of the effort to write new code.
-There's no way to write code without reading it, so making it easy tu read actually makes it easier to write.
+The next time you write a line of code, remember you are an author, writhing for readers who will judge your effort.
+Indeed, the ratio of time spent reading vs.writing is well over 10.1.We are constantly reading old code as part of the effort to write new code.
+There's no way to write code without reading it, so making it easy to read actually makes it easier to write.
 If you want to get done quickly, if your code to be easy to write, make it easy to read.
 
 1.5 The Boy Scout Rule:
 
 			----------------------------------------------------------------------------------------
-			|				Leave the compground cleaner than you found it.						   |
+			|				Leave the campground cleaner than you found it.						   |
 			----------------------------------------------------------------------------------------
 If we all checked-in our code a little cleaner than when we checked it out, the code simply could not rot.
 -------------------------------------------------			
@@ -183,7 +207,7 @@ Names are everywhere in software. We name our variables, our functions, our argu
 We name our jar files and ear files, we name and name and name, because we do so much of it, we'd better do it well, what follows are some simple rules for creating good names
 
 2.1 Use Intention-Relealing Names:
-Choosing good nales takes time but saves more than it takes.
+Choosing good names takes time but saves more than it takes.
 So take care with your names and change them when you find better ones.Everyone who reads your code (including you) will be happier if you do.
 			-----------------------------------------------------------------------------------------------------
 			|			The name of a variable, function, or class, should answer all the big questions. 		|		
@@ -193,13 +217,22 @@ So take care with your names and change them when you find better ones.Everyone 
 			-----------------------------------------------------------------------------------------------------
 			|			If a name requeries a comment, then the name does not reveal its intent.		 		|		
 			-----------------------------------------------------------------------------------------------------
+If you have to go into the code, in order to understand the name, it's a bad name.
+Names, are not for your convenience, they are your primary tool fot communicating intent, and communicating your intent, is always your first priority, it even more importent than making sure the code works
+-> So always choose names, that communicate your intent.
 			
-The problem isn't the simplicity of the code, but the implicity of the code, but with code names, the code become moch more explicit, and the intention is revealing.
+The problem isn't the simplicity of the code, but the implicity of the code, but with code names, the code become much more explicit, and the intention is revealing.
 With the simple and good names, it's not difficult to understand what's going on.
 
 2.2 Avoid Disinformation:
+Disinformation: is a in code that didn't what said, that say something other than he mean.
+Example:
+	Give a concrete name to an abstrcat class. 
 Programmers must avoid leaving false clues that obscure the meaning of code. We should avoid words whose entrenched meanings vary from our intended meaning.
 Spelling similar concepts similary is inforamtion, using inconsistent spellings is disinforamtion.
+			-----------------------------------------------------------------------------------------------------
+			|			Name id like honorable human, should say what it means and mean what it says.     		|		
+			-----------------------------------------------------------------------------------------------------
 
 2.3 Make meaningful Distinctions:
 Programmers create problems for themselves when they write code solely to satisfy a complier or interpreter.
@@ -207,13 +240,18 @@ Like:  Klass or Kontroller.
 
 2.4 Use pronounceable names:
 If you can't pronounce the name, you can't discuss it whitout sounding like an idiot, make your names pronounceable.
+Names are not just four our convenience, they are the tools we use to communicate, others need to communicate, too, so make your names pronouceable, so your names pronouceable so that others can use them to communicate with each other.
 
 2.5 Use searchable names:
 The lenght of a name should correspond to the size of it's scope.
 If a variable or constant might be seen or used in multiple places in a body of code, it is imperative to give it a search-friendly name.
 
 2.6 Avoid Encoding:
-Encoded names are seldom pronounceable and are easy to mis-type like using Hungarian Notation.
+Encoded names are seldom pronounceable and are easy to mis-type like using Hungarian Notation (HN).
+Example of Hungarian Notation (HN):
+	C: Class 		CAccount
+	I: Interface 	IAccount
+	p: Pointer		pAccount
 
 2.7 Member prefixes:
 The more we read the code, the less we see the prefixes (Example: m_dsc for a memebre variable of class.)
@@ -247,6 +285,11 @@ Method should have verb or verb phrase name like:
 	postPayment, deletePage or save
 Accessors, mutators and predicates should be names for their value and prefexed with:
 	get, set and is.
+Enum tend to be states or object descripters (Adjectifs)
+Example:
+	enum Color {RED, GREEN, BLUE};
+	enum Status {PENDING, CLOSED, CANCELLED};
+	enum Size {SMALL, MEDIUM, LARGE};
 
 2.12 Don't be cute
 Choose clarity over entertainment value.
@@ -264,13 +307,13 @@ A consistent lexicon is a great boon to the programmers who must use your code.
 Avoid using the same word for two puposes. Using the same term for two different ideas is essentially a pun.
 Our goal, as authors, is to make our code as easy as possible to understand. we want our code to be a quick skim, not an intense study.
 
-2.15 Use silution Domain Names:
+2.15 Use solution Domain Names:
 Choosing technical names for those things is usually the must appropriate course.
 
 2.16 Use problem Domain Names:
 Use the name from the problem domain.
-Separating solution and problem domain concepts is part of the job of a good programmers and designer. The code that hase more to do with problem domain concepts should have
-names drawn from the problem domain.
+Separating solution and problem domain concepts is part of the job of a good programmers and designer. The code that has
+more to do with problem domain concepts should have names drawn from the problem domain.
 
 2.17 Add Meaningful Context:
 You need to place names in context for your reader by enclosing them well-named classes, functions, or namespaces.
@@ -278,14 +321,186 @@ You need to place names in context for your reader by enclosing them well-named 
 2.18 Don't add Gratuitous Context:
 Shorter names are generally better than longer ones, so long as they are clear. Add no more context to a names than is necessary.
 
+2.19 The Scope Length Rule:
+Variable:
+	- The longer the scope of the variable, the longer the name of the varibale,
+	- The variable in very short scopes, should have very short names.
+Function/Method/Class:
+	- The longer the scope, the shorter the function or class name should be (for public)
+	- The shorter the scope, the longer it should be (for private)
+	- Drive classes tend to be a little bit longer
+	Example:
+					+---------+
+					| Account | 
+					+---------+
+						 ▲
+					 	 |
+				  +---------------+
+				  | SavingAccount |   			 
+				  +---------------+
+
+Recap:
+ 1. Choose your names thoughtfully,
+ 2. Communicate your intent,
+ 3. Avoid disinformation,
+ 4. Choose a Pronounceable names,
+ 5. Avoid Encoding,
+ 6. Choose Parts of speech well,
+ 7. The scope rule.
+
+			-----------------------------------------------------------------------------------------------------
+			|						Any fool can write code a computer can understand 							|
+			|												BUT 												|
+			|					it take a good programmer to write code a human can understand					|
+			|											-Martin Fowler-								 			|		
+			-----------------------------------------------------------------------------------------------------
+
 Final Words:
 The hardest thing about choosing names is that requires good descriptive skills and a shared cultural background. this is a teaching issue rather than a technical, business, 
 or management issue.
 Code reads like paragraphs and sentences, or at leats like tables and data structure.
+This second chapter, is based on the Ottinger's Rules for Variable and Class Naming, for more information's you can refere to file 'Ottinger's Rules for Variable and Class Naming'
+-------------------------------------------------			
+Chapter 3: Functions:
+
+Function are the first line of organization in any program, it must have well-chosen, highly descriptive name, that tell what tha function does.
+A long function is where the classes go to hide, and that always can be refactored into one or more classes
+
+What make a function easy to read and understand?
+How can make a function communicate its intent?
+What attributes can we give our functions that will allow a casual reader to intuit the kind of program they live inside?
+
+3.1 Small:
+The first rule of functions is that they should be small, the second rule of functions is that 'They should be smaller than that'.
+Every function in the program was just two, or three, or four lines long. 
+	Each was transparently obvious. 
+		Each told a story. 
+			Each led you the the next to the next in a compelling order.
+That's how short your functions should be, very small.
+
+3.2 Blocks and Indenting:
+This implies that the blocks within 'if' statements, 'else' statements, 'while' statements, and so on should be one line long. Probably that line should be a function call.
+Not  only does this keep the enclosing function small, but it also adds documentary value because the function called within the block can have a nicely descriptive name.
+This also implies that functions should not be large enough to hold nested structure.
+Therefore, the indent level of a function should not be greater the one or two. this, of course, make the functions easier to read and to understand.
+
+3.3 Do one thing:
+
+			-----------------------------------------------------------------------------------------------------
+			|		FUNCTION SHOULD DO ONE THING. THEY SHOULD DO IT WELL. THEY SHOULD DO IT ONLY.		 		|		
+			-----------------------------------------------------------------------------------------------------
+But how figure out a function do just one thing?
+You continue to extract function until you cannot extract any more.
+            -----------------------------------------------------------------------------------------------------
+			|		                        EXTRACT TILL YOU DROP.                              		 		|
+			-----------------------------------------------------------------------------------------------------
+After all, if you can extract one function from another, then the original function was doing more than one thing by definition.
+In fact, the function must be small, until that the 'if' statement, and 'while' loop, don't need braces ({}).
+I look at braces as an opportunity to EXTRACT TILL YOU DROP.
+
+The reason why, we write functions, is to decompose a larger concept into a set of steps at the next level of abstraction.
+The program should be very cleary that contains steps at many different levels of abstraction, So it is cleary doing more than one thing.
+So, another way to know that a function is doing more than 'one thing', is, if you can extract another function from it with a name that is not merely restatement of its implementation.
+
+3.4 Sections within functions:
+Functions that do one thing cannot be reasonably divided into sections.
+
+3.5 One level of Abstraction per function:
+In order to make sure our functions are doing 'one thing', we need to make sure that the statements within our function are all at the same level of abstraction.
+Mixing levels of abstraction within a function is always confusing. Readers may not be able to tell whether a particular expression is an essential concept or a detail.
+Worse, like broken windows, one details are mixed with essential concepts, more and more details tend to accurate within the function.
+
+3.6 Reading code from Top to bottom: The Stepdown Rule
+We want the code to read like a top-down narrative. We want every function to be followed by those at the next level of abstraction so that we can read the program, descending one level of abstraction at a time as we read down the list of function. I call this "The Stepdown Rule".
+To say this differently, we want to be able to read the program as though it were a set TO paragraphs, each of which is describing the current level of abstraction and referencing subsequent TO paragraphs at the next level down.
+			 
+			 class 								Abstract						
+			 	private variables					▲
+			 		public methods 					|
+			 			private method 				|
+			 				private method 			|
+			 			private method 				|
+			 				private method 			|
+			 				private method 			|
+			 		public methods 					|
+			 			private method 				|
+			 			private method 				▼
+			 									Details
+
+3.7 Switch Statements:
+Switch statements always do N things, and it's a missed opportunity to use polymorphisme.
+The solution of this problem is to bury the switch statement in the basement of an ABSTRACTION FACTORY, and never let anyone seet it.
 
 
+				    +--------+ 																		+--------+
+				    |  APP   | 																		|  APP   |  			 											
+				    +--------+ 																		+--------+
+				     	|																				|   
+				     	|																				▼           	                      
+	+-------------------------------------------+				__					+-------------------------------------------+
+	|    		   	 Switch			            |   			__		 			|    		   	 Abstract Base Class 		|   			 
+	+-------------------------------------------+				__					+-------------------------------------------+
+		|			|			|			 |											△			△			△			△
+		|	    	|		    |	   		 |          								|	    	|		    |	   		|          
+		▼		    ▼		    ▼		     ▼               							|		    |		    |		    |               
+   +-------+    +-------+  +-------+     +-------+									+-------+    +-------+  +-------+     +-------+
+   |Module1|    |Module2|  |Module3|     |Module4|									|Module1|    |Module2|  |Module3|     |Module4|
+   +-------+    +-------+  +-------+     +-------+									+-------+    +-------+  +-------+     +-------+
+   				Downstream modules     															 Derivatives modueles
+			
+			-----------------------------------------------------------------------------------------------------------
+			|		                        Each of case of the switch statement became a dirived class               |
+			|									that implements that method to do what the case did                   |
+			-----------------------------------------------------------------------------------------------------------
 
+3.8 Use Descriptive Names:
+Ward's principale: "You know you are working on clean code when each routine turns out to be pretty much what you expected".
+The smaller and more focused a function is, the easier it is to choose a descriptive name.
+Don't be afraid to make a name long. A long descriptive name is better than short enigmatic name. A long descriptive name is better than a long descriptive comment.
+Use a naming convention that allows multiple words to be easilyread in the function names, and then make use of those multiple words to give the function a name that say what it does.
+			-----------------------------------------------------------------------------------------------------------
+			|	Use the change signature method, class variable refactoring to find the approporiate name.            |
+			-----------------------------------------------------------------------------------------------------------
+3.9 Function Arguments:
+The ideal number of arguments for a function is Zero(nildac). 
+Next comes one (monadic), followed closely by two(dyadic).
+Three arguments (triadic) should be avoided where possible.
+More than three(polydic) requires very special justification and then shouldn't be used anyway.
 
+Arguments are even harder from a testing point of view.Imagine the difficulty of writing all the test cases to ensure tha all the various conbinations of arguments work properly.
+If there are no arguments, this is trivial. if there's one arguement, it's not too hard, with two arguments the problem gets a bit more challenging. 
+With more than two arguments, testing every combination of appropriate values can be daunting.
+Output arguments are harder to understand than input arguments. when we read a function, we are used to the idea of information going 'in' to the function through arguments
+and 'out' through the return value. We don't usually expect information to be going out through the arguments. So output arguments often cause us to do a double-take.
 
+3.10 Common Monadic forms:
+Choose names and context carefully.
 
+3.11 Flag arguments:
+Flag arguments are ugly, Passing a boolean into a function is a truly terrible practice.
+This function does more than one thing. It does one thing if the flag is true and another if the flag is false.
 
+3.12 Dyadic Function
+A function with two arguments is harder to understand than monadic function.
+Example:
+		assertEquals(expected, actual)
+How many time have you put 'actual' where the 'expected' should be? 
+The two arguements have no natural ordering. The 'expected', 'actual' ordering is a convention that requires practice to learn.
+
+3.13 Triads
+Fucntions tha take three arguements are significantly harder to understand than dyads. 
+The issues of ordering, pausing, and ignoring are more than soubled, we need to be very carefully before creating a traid.
+ 
+3.14 Argument Objects
+When a function seems to need more than two or three arguments, it is likely that some of those arguments ought to be wrapped into a class of their own.
+Exemple:
+		Circle makeCircle(double x, double y, double radius); = Circle makeCircle(Point centre, double radius); 
+
+3.15 Argument Lists:
+Function that take variable arguments can be monads, dayads or even triads. but it would be a mistake to give them more arguements that that.
+Example:
+	void monad(Integer... args);
+	void dyad(String name, Integer... args);
+	void traid(String name,int count, Integer... args);
+
+3.16 Verbs and Keywords
